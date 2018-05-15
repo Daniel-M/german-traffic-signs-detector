@@ -1,15 +1,9 @@
 import os
 import sys
-import logging
 import click
 from conf import Config
 from helpers.paths import create_path 
 from helpers.downloader import download_dataset
-
-FORMAT = '%(asctime)-15s %(clientip)s %(user)-8s %(message)s'
-logging.basicConfig(format=FORMAT)
-logger = logging.getLogger("Downloader")
-logger.addHandler(sys.stdout)
 
 images_path = Config.images_path
 images_url = Config.images_url 

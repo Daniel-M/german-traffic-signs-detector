@@ -4,7 +4,8 @@ import requests
 
 def download_dataset(url, name="images.zip"):
     with open(name, "wb") as dst:
-        print("Preparing to download file '{}'".format(url.split("/")[-1]))
+        msg = "Preparing to download file '{}'".format(url.split("/")[-1])
+        print(msg)
         response = requests.get(url, stream=True)
         total_length = response.headers.get('content-length')
 
@@ -17,5 +18,5 @@ def download_dataset(url, name="images.zip"):
                 download_lenght += len(data)
                 dst.write(data)
                 done = int(50 * download_lenght / total_length)
-                sys.stdout.write("\r[%s%s]" % ('=' * done, ' ' * (50-done)) )
+                sys.stdout.write("\r[%s%s]" % ('*' * done, ' ' * (50-done)) )
                 sys.stdout.flush()
