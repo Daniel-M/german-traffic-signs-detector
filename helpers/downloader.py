@@ -1,8 +1,9 @@
 import sys
+import zipfile
 import requests
 
 
-def download_dataset(url, name="images.zip"):
+def download_dataset(url, name):
     with open(name, "wb") as dst:
         msg = "Preparing to download file '{}'".format(url.split("/")[-1])
         print(msg)
@@ -20,3 +21,16 @@ def download_dataset(url, name="images.zip"):
                 done = int(50 * download_lenght / total_length)
                 sys.stdout.write("\r[%s%s]" % ('*' * done, ' ' * (50-done)) )
                 sys.stdout.flush()
+
+
+def unzip_dataset(path_to_zip, dst=""):
+    try:
+        with zipfile.ZipFile(path_to_zip, "r") as extractor:
+            extractor.extractall(dst)
+        extractor.close()
+        return dst
+    except Exception as err:
+        msg = ("Couldn't extract file '{}'. "
+               "The error caught was: '{}'" ).format(path_to_zip, err)
+        print(msg)
+        return None

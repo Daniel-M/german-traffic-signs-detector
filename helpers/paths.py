@@ -2,7 +2,7 @@ import os
 import sys
 
 
-def create_path(path="images"):
+def create_path(path):
     try:
         os.mkdir(path)
         return os.path.join(os.path.dirname(path),path)
@@ -14,6 +14,11 @@ def create_path(path="images"):
             return os.path.join(os.path.dirname(path),path)
         else:
             msg = ("Something wrong happened. "
-                   " The error caught was: '{}'").format(err)
+                   "The error caught was: '{}'").format(err)
             print(msg)
-            return "."
+            return ""
+
+
+def populate_tree(path_list):
+    for path in path_list:
+        create_path(path)
