@@ -45,7 +45,7 @@ def main_handler():
 @click.option("-d", type=click.Path(exists=True))
 def train(m, d):
     if d == None:
-        d = "FullIJCNN2013"
+        d = "images/FullIJCNN2013"
 
     if m.lower() == "model1" or m.lower() == "scikit":
         skit_model.train_model(path=d)
@@ -61,7 +61,7 @@ def train(m, d):
 @click.option("-d", type=click.Path(exists=True))
 def test(m, d):
     if d == None:
-        d = "FullIJCNN2013"
+        d = "images/FullIJCNN2013"
 
     if m.lower() == "model1" or m.lower() == "scikit":
         skit_model.test_model(path=d)

@@ -41,7 +41,7 @@ def annotation_parser(annotation, sep=";"):
     return filename, int(left_column), int(top_row), int(right_column), int(bottom_row), int(category)
 
 
-def get_annotated_ROI(annotation, path="FullIJCNN2013", as_gray=True, sep=";"):
+def get_annotated_ROI(annotation, path="images/FullIJCNN2013", as_gray=True, sep=";"):
     """
     get_annotated_ROI returns the ROI(an array) provided an annotation (string)
     
@@ -63,7 +63,7 @@ def get_annotated_ROI(annotation, path="FullIJCNN2013", as_gray=True, sep=";"):
     return img[top_row:top_row+(right_column-left_column),left_column:left_column+(bottom_row-top_row)].copy(), cat
 
 
-def create_data_set_from_annotations(annotations_file, path="FullIJCNN2013", as_gray=True, target_shape = input_image_shape, sep=";"):
+def create_data_set_from_annotations(annotations_file, path="images/FullIJCNN2013", as_gray=True, target_shape = input_image_shape, sep=";"):
     """
     create_data_set_from_annotations Generates a shuffled dataset of ROIs (X) and their labels (y)
     provided an annotations_file corresponding to the german traffic sings dataset
@@ -216,7 +216,7 @@ def LeNet(x):
 
 
 
-def train_model(path="FullIJCNN2013", annotation_file="gt.txt"):
+def train_model(path="images/FullIJCNN2013", annotation_file="gt.txt"):
     annotations = os.path.join(path, annotation_file) 
 
     X, y = create_data_set_from_annotations(annotations)
@@ -280,7 +280,7 @@ def train_model(path="FullIJCNN2013", annotation_file="gt.txt"):
         print("Model saved to './models/model3/saved'")
 
 
-def test_model(path="FullIJCNN2013", annotation_file="gt.txt"):
+def test_model(path="images/FullIJCNN2013", annotation_file="gt.txt"):
     print("Ready to load model from './models/model3/saved'")
     annotations = os.path.join(path, annotation_file) 
 
